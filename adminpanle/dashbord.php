@@ -29,7 +29,7 @@ include './init.php';
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-people"></i>
+                                        <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>145</h6>
@@ -47,7 +47,7 @@ include './init.php';
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class='bx bx-hotel'></i>
+                                        <i class='bx bx-hotel'></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>145</h6>
@@ -67,7 +67,7 @@ include './init.php';
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-check-circle-fill text-success"></i>
+                                        <i class="bi bi-check-circle-fill text-success"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>145</h6>
@@ -85,7 +85,7 @@ include './init.php';
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-clipboard-check"></i>
+                                        <i class="bi bi-clipboard-check"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>145</h6>
@@ -103,7 +103,7 @@ include './init.php';
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-coin text-success"></i>
+                                        <i class="bi bi-coin text-success"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>145</h6>
