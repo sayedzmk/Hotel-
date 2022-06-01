@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2022 at 09:26 PM
+-- Generation Time: Jun 02, 2022 at 01:57 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -206,6 +206,7 @@ CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `custmerId` int(11) NOT NULL,
   `categoryId` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
   `check_in` date NOT NULL,
   `check_out` date NOT NULL,
   `days` int(11) NOT NULL,
@@ -217,10 +218,10 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `custmerId`, `categoryId`, `check_in`, `check_out`, `days`, `price`, `createAt`) VALUES
-(8, 1, 3, '2022-06-02', '2022-06-07', 5, 2500, '2022-05-31 23:18:18'),
-(9, 3, 4, '2022-06-01', '2022-06-07', 6, 4200, '2022-06-01 18:29:05'),
-(10, 3, 1, '2022-06-10', '2022-06-15', 5, 2500, '2022-06-01 18:35:25');
+INSERT INTO `orders` (`id`, `custmerId`, `categoryId`, `room_id`, `check_in`, `check_out`, `days`, `price`, `createAt`) VALUES
+(8, 1, 3, 2, '2022-06-02', '2022-06-07', 5, 2500, '2022-05-31 23:18:18'),
+(9, 3, 4, 6, '2022-06-01', '2022-06-07', 6, 4200, '2022-06-01 18:29:05'),
+(10, 3, 1, 3, '2022-06-10', '2022-06-15', 5, 2500, '2022-06-01 18:35:25');
 
 -- --------------------------------------------------------
 
@@ -377,7 +378,8 @@ ALTER TABLE `options`
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `custmerId` (`custmerId`),
-  ADD KEY `categoryId` (`categoryId`);
+  ADD KEY `categoryId` (`categoryId`),
+  ADD KEY `room_id` (`room_id`);
 
 --
 -- Indexes for table `permaion`
@@ -516,7 +518,8 @@ ALTER TABLE `options`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`custmerId`) REFERENCES `custmer` (`id`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`);
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`),
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`);
 
 --
 -- Constraints for table `roles`

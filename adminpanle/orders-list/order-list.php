@@ -1,14 +1,10 @@
 <?php
 require __DIR__ . '\..\init.php';
 
-$select_order = "SELECT orders.id as orderID ,orders.check_in as StartDay ,orders.check_out as EndDay,orders.price as orderPrice from `orders` join `custmer` on orders.custmerId=custmer.id";
+$select_order = "SELECT category.name as categoryName, orders.id as orderID ,orders.check_in as StartDay ,orders.check_out as EndDay,orders.price as orderPrice  from `orders` JOIN category on orders.categoryId=category.id ";
 $order_Selection = mysqli_query($conn, $select_order);
 
-//category Select
-$select_category = "SELECT category.name as catName from `category` JOIN `orders` on category.id=orders.categoryId";
-$category_Selection = mysqli_query($conn, $select_category);
-$row_category = mysqli_fetch_assoc($category_Selection);
-$catName = $row_category['catName'];
+
 //delete
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
@@ -52,7 +48,7 @@ if (isset($_GET['delete'])) {
                                 <?php foreach ($order_Selection as $data) { ?>
                                     <tr>
                                         <td><?php echo $data['orderID'] ?></td>
-                                        <td><?php echo $catName ?></td>
+                                        <td><?php echo $data['categoryName'] ?></td>
                                         <td><?php echo $data['StartDay'] ?></td>
                                         <td><?php echo $data['EndDay'] ?></td>
                                         <td><?php echo $data['orderPrice']  ?></td>
@@ -79,5 +75,5 @@ if (isset($_GET['delete'])) {
 
 
 <?php
-    include '../includes/scripts.php';
+include '../includes/scripts.php';
 ?>
