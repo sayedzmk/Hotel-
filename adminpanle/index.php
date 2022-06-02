@@ -4,6 +4,7 @@ include './init.php';
 
 $countEmployee = COUNT(seletQuery('employee'));
 $countRoom = COUNT(seletQuery('rooms'));
+$countorders = COUNT(seletQuery('orders'));
 ?>
 
 <main id="main" class="main">
@@ -93,7 +94,7 @@ $countRoom = COUNT(seletQuery('rooms'));
                                         <i class="bi bi-clipboard-check"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>145</h6>
+                                        <h6><?= $countorders ?></h6>
                                     </div>
                                 </div>
                             </div>
