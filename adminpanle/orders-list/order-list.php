@@ -91,9 +91,9 @@ if (isset($_GET['boking']) && isset($_GET['id'])) {
                                             if ($_SESSION['group'] == 'admin') {
                                                 if ($data['orderStatus'] == 'whating') {
                                             ?>
-                                                    <a class="btn btn-succes" href="/hotel/adminpanle/orders-list/order-list.php?boking=aprove&id=<?php echo $data['orderID'] ?>"><i class="bi bi-check-circle"></i></a>
+                                                    <a class="btn btn-success" href="/hotel/adminpanle/orders-list/order-list.php?boking=aprove&id=<?php echo $data['orderID'] ?>"><i class="bi bi-check-circle"></i></a>
 
-                                                    <a class="btn btn-info" href="/hotel/adminpanle/orders-list/order-list.php?boking=filed&id=<?php echo $data['orderID'] ?>"><i class="bi bi-clipboard-x"></i></a>
+                                                    <a class="btn btn-dark" href="/hotel/adminpanle/orders-list/order-list.php?boking=filed&id=<?php echo $data['orderID'] ?>"><i class="bi bi-clipboard-x"></i></a>
                                             <?php
                                                 }
                                             }

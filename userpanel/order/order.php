@@ -59,7 +59,10 @@ if (isset($_GET['delete'])) {
                                     <tr class="<?php
                                                 if ($data['orderStatus'] == 'filed') {
                                                     echo 'alert alert-danger';
-                                                } ?>">
+                                                }
+                                                elseif($data['orderStatus'] == 'aprove'){
+                                                    echo 'alert alert-success';
+                                                }?>">
                                         <td><?php echo $data['roomName'] ?></td>
                                         <td><?php echo $data['categoryName'] ?></td>
                                         <td><?php echo $data['StartDay'] ?></td>
