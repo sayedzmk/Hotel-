@@ -162,4 +162,7 @@ include '../shared/nav.php'
   </section><!-- End Blog Section -->
 
 </main><!-- End #main -->
-<?php include '../shared/script.php'; ?>
+<?php
+include '../shared/footer.php';
+include '../shared/script.php'; 
+?>

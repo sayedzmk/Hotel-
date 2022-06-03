@@ -29,17 +29,18 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="/hotel/adminpanle/orders-list/order-list.php">
             <i class="bi bi-cart-check"></i>
-                <span>Orders</span>
+                <span>Booking</span>
             </a>
         </li>
 
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="/hotel/adminpanle/pages-contact.php">
                 <i class="bi bi-envelope"></i>
                 <span>Contact</span>
             </a>
-        </li><!-- End Contact Page Nav -->
+        </li> -->
+        <!-- End Contact Page Nav -->
 
         <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="/hotel/adminpanle/pages-register.php">

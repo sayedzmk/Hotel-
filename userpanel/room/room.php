@@ -54,4 +54,7 @@ $Room_Selection = mysqli_query($conn, $select);
 
 </main><!-- End #main -->
 
-<?php include '../shared/script.php'; ?>
+<?php
+include '../shared/footer.php'; 
+include '../shared/script.php'; 
+?>

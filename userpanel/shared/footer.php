@@ -47,4 +47,4 @@
 
         </div>
     </div>
-</footer><!-- End Footer -->
+</footer>

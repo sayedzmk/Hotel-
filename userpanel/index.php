@@ -104,7 +104,7 @@ include './shared/nav.php';
   </div>
 </main><!-- End #main -->
 
-<?php include 
-// './shared/footer.php';
-'./shared/script.php'; 
+<?php 
+include './shared/footer.php';
+include './shared/script.php'; 
 ?>
