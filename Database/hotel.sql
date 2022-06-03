@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 03, 2022 at 05:47 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Host: 127.0.0.1
+-- Generation Time: Jun 03, 2022 at 05:27 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -39,7 +40,7 @@ CREATE TABLE `admins` (
   `status` varchar(50) NOT NULL DEFAULT 'active',
   `salary` int(11) NOT NULL,
   `img` varchar(225) DEFAULT NULL,
-  `createAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `createAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -47,7 +48,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `firstName`, `lastName`, `email`, `password`, `phone1`, `phone2`, `group`, `status`, `salary`, `img`, `createAt`) VALUES
-(1, 'add', 'ioj', 'mohamed@mail.com', '123', 'km', 'km', 'employee', 'lm', 50, NULL, '2022-06-03 03:43:20'),
+(1, 'mohmed', 'samy', 'mohamed@mail.com', '123', '01150100104', '01150100104', 'employee', 'lm', 50, NULL, '2022-06-03 15:05:30'),
 (2, 'sayed', 'mohamed', 'sayed@gmail.com', '1233', '01100433760', '01018326408', 'admin', 'active', 55, NULL, '2022-06-03 03:43:17');
 
 -- --------------------------------------------------------
@@ -59,7 +60,7 @@ INSERT INTO `admins` (`id`, `firstName`, `lastName`, `email`, `password`, `phone
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(55) NOT NULL,
-  `createAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `createAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -89,7 +90,7 @@ CREATE TABLE `custmer` (
   `img` varchar(150) DEFAULT NULL,
   `phone` varchar(15) NOT NULL,
   `address` varchar(55) NOT NULL,
-  `cresteAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `cresteAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -141,7 +142,7 @@ CREATE TABLE `employee` (
   `password` varchar(20) NOT NULL,
   `departmentid` int(11) NOT NULL,
   `shift` int(11) NOT NULL,
-  `createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -151,7 +152,8 @@ CREATE TABLE `employee` (
 INSERT INTO `employee` (`id`, `firstName`, `lastName`, `email`, `password`, `departmentid`, `shift`, `createdAt`) VALUES
 (5, 'sayed', 'moahemd', 'sayed@gmail.com', '123', 7, 3, '2022-05-28 15:53:02'),
 (6, 'youssef', 'shaaban', 'youssef.8000@gmail.com', '12345', 6, 1, '2022-06-01 17:41:21'),
-(7, 'Micheal', 'Amir', 'Micheal@gmail', '1234', 2, 3, '2022-06-01 17:42:58');
+(7, 'Micheal', 'Amir', 'Micheal@gmail', '1234', 2, 3, '2022-06-01 17:42:58'),
+(8, 'Mohamed', 'Samy', 'mohamed@gmail.com', '12345', 7, 3, '2022-06-03 13:28:41');
 
 -- --------------------------------------------------------
 
@@ -185,15 +187,6 @@ CREATE TABLE `orders` (
   `status` varchar(255) NOT NULL DEFAULT 'whating'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `custmerId`, `categoryId`, `room_id`, `check_in`, `check_out`, `days`, `price`, `createAt`, `status`) VALUES
-(11, 3, 4, 6, '2022-06-03', '2022-06-11', 8, 5600, '2022-06-03 03:25:57', 'aprove'),
-(12, 3, 5, 4, '2022-06-03', '2022-07-01', 28, 5600, '2022-06-03 03:26:27', 'filed'),
-(13, 3, 2, 1, '2022-06-09', '2022-06-30', 21, 6300, '2022-06-03 03:42:59', 'whating');
-
 -- --------------------------------------------------------
 
 --
@@ -209,7 +202,7 @@ CREATE TABLE `rooms` (
   `adminId` int(11) NOT NULL,
   `categoryId` int(11) NOT NULL,
   `status` varchar(225) NOT NULL DEFAULT 'active',
-  `createAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `createAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -217,12 +210,26 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `price`, `descriptions`, `img`, `adminId`, `categoryId`, `status`, `createAt`) VALUES
-(1, 'K5-102', 300, 'Pool view, WiFi, HDTV, media panel, laptop safe, minibar  Admire views of the pool from this stylish guest room with one king bed. Unwind and watch the HDTV and stay connected with the media panel allowing you to connect your', '16540294611.png', 0, 2, 'active', '2022-05-31 20:37:41'),
-(2, 'F-60', 500, '144 sq. m., two minibars, two bathrooms, two TVs, air conditioning, mini bar, tea & coffee facilities. This 144 sq. m. Queen Family Room features two bathrooms and walk in showers both fully stocked with luxurious amenities. ', '16540355964.png', 2, 3, 'booked', '2022-06-03 02:53:15'),
+(1, 'K5-102', 300, 'Pool view, WiFi, HDTV, media panel, laptop safe, minibar  Admire views of the pool from this stylish guest room with one king bed. Unwind and watch the HDTV and stay connected with the media panel allowing you to connect your', '16540294611.png', 0, 2, 'active', '2022-06-03 14:38:05'),
+(2, 'F-60', 500, '144 sq. m., two minibars, two bathrooms, two TVs, air conditioning, mini bar, tea & coffee facilities. This 144 sq. m. Queen Family Room features two bathrooms and walk in showers both fully stocked with luxurious amenities. ', '16540355964.png', 2, 3, 'active', '2022-06-03 03:55:52'),
 (3, 'D1-106', 500, 'Pool view, terrace, WiFi, HDTV, media panel, laptop safe, minibar  Located on the ground floor opposite the pool, enjoy the sunshine from the private terrace of this stylish cabana room with one king bed.  Unwind and watch th', '1654099973TWIN GUEST ROOM.jpg', 2, 1, 'active', '2022-06-01 16:12:53'),
-(4, 'S-201', 200, 'Elegant dÃ©cor, air conditioning, tea & coffee facilities, 37-inch TV, mini bar. Stay in this contemporary guest room featuring a queen-sized bed. This room comfortably sleeps two adults and two children. Unwind in front of t', '16541078191.jpg', 2, 5, 'active', '2022-06-01 18:23:39'),
+(4, 'S-201', 200, 'Elegant dÃ©cor, air conditioning, tea & coffee facilities, 37-inch TV, mini bar. Stay in this contemporary guest room featuring a queen-sized bed. This room comfortably sleeps two adults and two children. Unwind in front of t', '16541078191.jpg', 2, 5, 'active', '2022-06-03 14:40:10'),
 (5, 'T-302', 500, 'Pool view, terrace, WiFi, HDTV, media panel, laptop safe, minibar  Located on the ground floor opposite the pool, enjoy the sunshine from the private terrace of this stylish cabana room with one king bed.  Unwind and watch th', '16541078641.jpg', 2, 6, 'active', '2022-06-01 18:24:24'),
-(6, 'Su-401', 700, 'Elegant dÃ©cor, air conditioning, tea & coffee facilities, 37-inch TV, mini bar. Stay in this contemporary guest room featuring a queen-sized bed. This room comfortably sleeps two adults and two children. Unwind in front of t', '16541079052.jpg', 2, 4, 'booked', '2022-06-03 03:26:33');
+(6, 'Su-401', 700, 'Elegant dÃ©cor, air conditioning, tea & coffee facilities, 37-inch TV, mini bar. Stay in this contemporary guest room featuring a queen-sized bed. This room comfortably sleeps two adults and two children. Unwind in front of t', '16541079052.jpg', 2, 4, 'active', '2022-06-03 03:55:55'),
+(7, 'K2-103', 700, 'WiFi, HDTV, media panel, laptop safe, minibar  Enjoy your stay in this stylish guest room with one king bed.  Unwind and watch the HDTV and stay connected with the media panel allowing you to connect your devices to the scree', '16542690903.png', 1, 2, 'active', '2022-06-03 15:11:30'),
+(8, 'K1-101', 600, 'WiFi, HDTV, media panel, laptop safe, minibar  Enjoy your stay in this stylish guest room with one king bed.  Unwind and watch the HDTV and stay connected with the media panel allowing you to connect your devices to the scree', '1654269176KING GUEST ROOM1.jpg', 1, 2, 'active', '2022-06-03 15:12:56'),
+(9, 'F2-100', 900, ' 144 sq. m., two minibars, two bathrooms, two TVs, air conditioning, mini bar, tea & coffee facilities. This 144 sq. m. Queen Family Room features two bathrooms and walk in showers both fully stocked with luxurious amenities.', '1654269236FAMILY TWO-CONNECTING BEDROOMS.png', 1, 3, 'active', '2022-06-03 15:13:56'),
+(10, 'F3-121', 1000, 'Mountain or city view, private balcony, floor to ceiling windows, mini bar, 32-inch HDTV, coffee maker  The Family Connecting Room combines two Guest Rooms, king & twin, into the one bookable room, enhancing the convenience o', '1654269284pool view.jpg', 1, 3, 'active', '2022-06-03 15:14:44'),
+(11, 'D2-104', 600, 'Pool view, terrace, WiFi, HDTV, media panel, laptop safe, minibar  Located on the ground floor opposite the pool, enjoy the sunshine from the private terrace of this stylish cabana room with one king bed.  Unwind and watch th', '1654269341TWIN GUEST ROOM.jpg', 1, 1, 'active', '2022-06-03 15:15:41'),
+(12, 'D3-103', 700, ' This bright guestroom offers majestic views of the mountains or city.  Enjoy a decadent cup of freshly brewed coffee and admire the views from your private balcony.  Unwind on the couch in your cozy bathrobe and slippers as ', '16542693763.png', 1, 1, 'active', '2022-06-03 15:16:16'),
+(13, 'D4-107', 750, 'Pool view, WiFi, HDTV, media panel, laptop safe, minibar  Admire views of the pool from this stylish guest room with twin beds.  Unwind and watch the HDTV and stay connected with the media panel allowing you to connect your d', '16542694271.png', 1, 1, 'active', '2022-06-03 15:17:07'),
+(14, 'F5-109', 850, 'Elegant dÃ©cor, air conditioning, tea & coffee facilities, 37-inch TV, mini bar. Stay in this contemporary guest room featuring a queen-sized bed. This room comfortably sleeps two adults and two children. Unwind in front of t', '16542694774.png', 1, 3, 'active', '2022-06-03 15:17:57'),
+(15, 'Su-202', 1200, 'WiFi, HDTV, media panel, laptop safe, minibar  Enjoy your stay in this stylish guest room with one king bed.  Unwind and watch the HDTV and stay connected with the media panel allowing you to connect your devices to the scree', '16542695131.jpg', 1, 4, 'active', '2022-06-03 15:18:33'),
+(16, 'T2-120', 600, ' This bright guestroom offers majestic views of the mountains or city.  Enjoy a decadent cup of freshly brewed coffee and admire the views from your private balcony.  Unwind on the couch in your cozy bathrobe and slippers as ', '16542697472.jpg', 1, 6, 'active', '2022-06-03 15:22:27'),
+(17, 'T3-301', 800, ' This bright guestroom offers majestic views of the mountains or city.  Enjoy a decadent cup of freshly brewed coffee and admire the views from your private balcony.  Unwind on the couch in your cozy bathrobe and slippers as ', '1654269769triple1.jpg', 1, 6, 'active', '2022-06-03 15:22:49'),
+(18, 'S-200', 400, 'WiFi, HDTV, media panel, laptop safe, minibar  Enjoy your stay in this stylish guest room with one king bed.  Unwind and watch the HDTV and stay connected with the media panel allowing you to connect your devices to the scree', '16542699262.jpg', 1, 5, 'active', '2022-06-03 15:25:26'),
+(19, 'S-203', 500, ' This bright guestroom offers majestic views of the mountains or city.  Enjoy a decadent cup of freshly brewed coffee and admire the views from your private balcony.  Unwind on the couch in your cozy bathrobe and slippers as ', '16542699464.jpg', 1, 5, 'active', '2022-06-03 15:25:46'),
+(20, 'K4-100', 700, 'WiFi, HDTV, media panel, laptop safe, minibar  Enjoy your stay in this stylish guest room with one king bed.  Unwind and watch the HDTV and stay connected with the media panel allowing you to connect your devices to the scree', '16542700051.png', 1, 2, 'active', '2022-06-03 15:26:45');
 
 -- --------------------------------------------------------
 
@@ -343,7 +350,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `options`
@@ -355,13 +362,13 @@ ALTER TABLE `options`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `shift`

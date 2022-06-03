@@ -30,7 +30,7 @@ $row = mysqli_fetch_assoc($admin);
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
                         <h6><?php echo $row['firstName'] ?> <?php echo $row['lastName'] ?></h6>
-                        <span>Web Designer</span>
+                        <span><?php echo $row['group'] ?> </span>
                     </li>
                     <li>
                         <hr class="dropdown-divider">

@@ -28,7 +28,7 @@ $row = mysqli_fetch_assoc($admin);
 
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <h2><?php echo $row['firstName'] ?> <?php echo $row['lastName'] ?></h2>
-            <h3>Web Designer</h3>
+            <h3><?php echo $row['group'] ?></h3>
             <div class="social-links mt-2">
               <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -56,10 +56,6 @@ $row = mysqli_fetch_assoc($admin);
               </li>
 
               <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
-              </li>
-
-              <li class="nav-item">
                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
               </li>
 
@@ -74,37 +70,37 @@ $row = mysqli_fetch_assoc($admin);
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                  <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                  <div class="col-lg-9 col-md-8"><?php echo $row['firstName'] ?> <?php echo $row['lastName'] ?></div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Company</div>
-                  <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
+                  <div class="col-lg-9 col-md-8">Hotel Hilton</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Job</div>
-                  <div class="col-lg-9 col-md-8">Web Designer</div>
+                  <div class="col-lg-9 col-md-8"><?php echo $row['group'] ?></div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Country</div>
-                  <div class="col-lg-9 col-md-8">USA</div>
+                  <div class="col-lg-9 col-md-8">EYGPT</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Address</div>
-                  <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
+                  <div class="col-lg-9 col-md-8">EL-Hamdia</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Phone</div>
-                  <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                  <div class="col-lg-9 col-md-8"><?php echo $row['phone1'] ?></div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Email</div>
-                  <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                  <div class="col-lg-9 col-md-8"><?php echo $row['email'] ?></div>
                 </div>
 
               </div>

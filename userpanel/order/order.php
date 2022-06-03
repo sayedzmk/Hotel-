@@ -57,12 +57,16 @@ if (isset($_GET['delete'])) {
                             <tbody>
                                 <?php foreach ($order_Selection as $data) { ?>
                                     <tr class="<?php
-                                                if ($data['orderStatus'] == 'filed') {
-                                                    echo 'alert alert-danger';
+                                                if ($_SESSION['CustomerID']) {
+                                                    if ($data['orderStatus'] == 'whating') {
+                                                        echo 'alert alert-warning';
+                                                    } elseif ($data['orderStatus'] == 'filed') {
+                                                        echo 'alert alert-danger';
+                                                    } elseif ($data['orderStatus'] == 'aprove') {
+                                                        echo 'alert alert-success';
+                                                    }
                                                 }
-                                                elseif($data['orderStatus'] == 'aprove'){
-                                                    echo 'alert alert-success';
-                                                }?>">
+                                                ?>">
                                         <td><?php echo $data['roomName'] ?></td>
                                         <td><?php echo $data['categoryName'] ?></td>
                                         <td><?php echo $data['StartDay'] ?></td>
