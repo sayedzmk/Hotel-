@@ -2,9 +2,26 @@
 
 include './init.php';
 
-$countEmployee = COUNT(seletQuery('employee'));
-$countRoom = COUNT(seletQuery('rooms'));
-$countorders = COUNT(seletQuery('orders'));
+$countEmployee = seletQuery('employee');
+$countRoom = seletQuery('rooms');
+$countorders = seletQuery('orders');
+
+
+$availableRooms = seletQuery('rooms', "WHERE status = 'active'");
+$bookedRooms = seletQuery('rooms', "WHERE status = 'booked'");
+
+
+// $select = "SELECT * FROM `rooms` WHERE status = 'active'";
+// $sh = mysqli_query($conn, $select);
+// $row = mysqli_fetch_all($sh);
+// $availableRooms = COUNT($row);
+
+
+// $selectBookedRooms = "SELECT * FROM `rooms` WHERE status = 'booked'";
+// $sh = mysqli_query($conn, $select);
+// $row = mysqli_fetch_all($sh);
+// $bookedRooms = COUNT($row);
+
 ?>
 
 <main id="main" class="main">
@@ -76,7 +93,7 @@ $countorders = COUNT(seletQuery('orders'));
                                         <i class="bi bi-check-circle-fill text-success"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>145</h6>
+                                        <h6><?= $availableRooms ?></h6>
                                     </div>
                                 </div>
                             </div>
@@ -94,6 +111,25 @@ $countorders = COUNT(seletQuery('orders'));
                                         <i class="bi bi-clipboard-check"></i>
                                     </div>
                                     <div class="ps-3">
+                                        <h6><?= $bookedRooms ?></h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card sales-card">
+
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Orders </h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-clipboard-check"></i>
+                                    </div>
+                                    <div class="ps-3">
                                         <h6><?= $countorders ?></h6>
                                     </div>
                                 </div>
@@ -101,7 +137,8 @@ $countorders = COUNT(seletQuery('orders'));
 
                         </div>
                     </div>
-                    <div class="col-xxl-4 col-md-6">
+
+                    <!-- <div class="col-xxl-4 col-md-6">
                         <div class="card info-card sales-card">
 
                             <div class="card-body">
@@ -118,7 +155,7 @@ $countorders = COUNT(seletQuery('orders'));
                             </div>
 
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>

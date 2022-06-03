@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '\..\init.php';
+require __DIR__ . '/../init.php';
 
 if (isset($_POST['add'])) {
     $fname = $_POST['firstName'];
@@ -83,7 +83,8 @@ if (isset($_GET['edit'])) {
                                 </div>
                                 <select id="inputState" name="shift" class="form-select">
                                     <option selected>Shift</option>
-                                    <?php foreach ($sh as $row2) { echo $row2 ?>
+                                    <?php foreach ($sh as $row2) {
+                                        echo $row2 ?>
                                         <option value="<?php echo $row2[0]; ?>"><?php echo $row2[1] ?>
                                         </option>
                                     <?php }; ?>

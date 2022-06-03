@@ -6,10 +6,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 
-// if (!isset($_SESSION['id'])) {
-//     header("location: /hotel/adminpanle/pages-login.php");
-//     exit();
-// }
+if (!isset($_SESSION['id'])) {
+    header("location: /hotel/adminpanle/pages-login.php");
+    exit();
+}
 
 
 // include path css

@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['id']         = $row['id'];
         $_SESSION['group']      = $row['group'];
         $_SESSION['status']     = $row['status'];
-        $_SESSION['group']       = $row['roleid'];
         header("location: /hotel/adminpanle");
         exit();
     }

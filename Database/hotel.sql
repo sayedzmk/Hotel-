@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 02, 2022 at 01:57 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Host: localhost
+-- Generation Time: Jun 03, 2022 at 05:47 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -21,19 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `hotel`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `activeadmin`
---
-
-CREATE TABLE `activeadmin` (
-  `id` int(11) NOT NULL,
-  `adminId` int(11) NOT NULL,
-  `start` datetime NOT NULL,
-  `end` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -53,7 +39,7 @@ CREATE TABLE `admins` (
   `status` varchar(50) NOT NULL DEFAULT 'active',
   `salary` int(11) NOT NULL,
   `img` varchar(225) DEFAULT NULL,
-  `createAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `createAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -61,8 +47,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `firstName`, `lastName`, `email`, `password`, `phone1`, `phone2`, `group`, `status`, `salary`, `img`, `createAt`) VALUES
-(1, 'add', 'ioj', 'mohamed@mail.com', '123', 'km', 'km', 'klm', 'lm', 50, NULL, '2022-05-27 11:10:34'),
-(2, 'sayed', 'mohamed', 'sayed@gmail.com', '1233', '01100433760', '01018326408', 'null', 'active', 55, NULL, '2022-05-27 11:56:51');
+(1, 'add', 'ioj', 'mohamed@mail.com', '123', 'km', 'km', 'employee', 'lm', 50, NULL, '2022-06-03 03:43:20'),
+(2, 'sayed', 'mohamed', 'sayed@gmail.com', '1233', '01100433760', '01018326408', 'admin', 'active', 55, NULL, '2022-06-03 03:43:17');
 
 -- --------------------------------------------------------
 
@@ -73,7 +59,7 @@ INSERT INTO `admins` (`id`, `firstName`, `lastName`, `email`, `password`, `phone
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(55) NOT NULL,
-  `createAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `createAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -103,7 +89,7 @@ CREATE TABLE `custmer` (
   `img` varchar(150) DEFAULT NULL,
   `phone` varchar(15) NOT NULL,
   `address` varchar(55) NOT NULL,
-  `cresteAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `cresteAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -114,22 +100,6 @@ INSERT INTO `custmer` (`id`, `firstName`, `lastName`, `email`, `password`, `img`
 (1, 'youssef', 'shaaban', 'youssefshaaban.8000@gmail.com', '123', '1654029329IMG_20201001_114752_005.jpg', '01123402232', 'elnozha', '2022-05-31 20:35:29'),
 (2, 'youssef', 'shaaban', 'youssef.8000@gmail.com', '111', '1654038860', '01123402232', 'elnozha', '2022-05-31 23:14:20'),
 (3, 'sayed', 'moahemd', 'sayed@gmail.com', '123', '1654096221sayed.jpg', '01100433760', 'Hawmdia', '2022-06-01 15:10:21');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `custmer_ad`
---
-
-CREATE TABLE `custmer_ad` (
-  `id` int(11) NOT NULL,
-  `firstName` varchar(55) NOT NULL,
-  `lastName` varchar(55) NOT NULL,
-  `email` varchar(55) NOT NULL,
-  `phone` varchar(20) NOT NULL,
-  `address` varchar(55) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -171,7 +141,7 @@ CREATE TABLE `employee` (
   `password` varchar(20) NOT NULL,
   `departmentid` int(11) NOT NULL,
   `shift` int(11) NOT NULL,
-  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -211,59 +181,18 @@ CREATE TABLE `orders` (
   `check_out` date NOT NULL,
   `days` int(11) NOT NULL,
   `price` int(11) NOT NULL,
-  `createAt` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `createAt` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `status` varchar(255) NOT NULL DEFAULT 'whating'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `custmerId`, `categoryId`, `room_id`, `check_in`, `check_out`, `days`, `price`, `createAt`) VALUES
-(8, 1, 3, 2, '2022-06-02', '2022-06-07', 5, 2500, '2022-05-31 23:18:18'),
-(9, 3, 4, 6, '2022-06-01', '2022-06-07', 6, 4200, '2022-06-01 18:29:05'),
-(10, 3, 1, 3, '2022-06-10', '2022-06-15', 5, 2500, '2022-06-01 18:35:25');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `permaion`
---
-
-CREATE TABLE `permaion` (
-  `id` int(11) NOT NULL,
-  `name` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `permation_role`
---
-
-CREATE TABLE `permation_role` (
-  `id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `permation_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `roles`
---
-
-CREATE TABLE `roles` (
-  `id` int(11) NOT NULL,
-  `name` varchar(55) NOT NULL,
-  `adminId` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `roles`
---
-
-INSERT INTO `roles` (`id`, `name`, `adminId`) VALUES
-(10, 'sayed', NULL);
+INSERT INTO `orders` (`id`, `custmerId`, `categoryId`, `room_id`, `check_in`, `check_out`, `days`, `price`, `createAt`, `status`) VALUES
+(11, 3, 4, 6, '2022-06-03', '2022-06-11', 8, 5600, '2022-06-03 03:25:57', 'aprove'),
+(12, 3, 5, 4, '2022-06-03', '2022-07-01', 28, 5600, '2022-06-03 03:26:27', 'filed'),
+(13, 3, 2, 1, '2022-06-09', '2022-06-30', 21, 6300, '2022-06-03 03:42:59', 'whating');
 
 -- --------------------------------------------------------
 
@@ -280,7 +209,7 @@ CREATE TABLE `rooms` (
   `adminId` int(11) NOT NULL,
   `categoryId` int(11) NOT NULL,
   `status` varchar(225) NOT NULL DEFAULT 'active',
-  `createAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `createAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -289,11 +218,11 @@ CREATE TABLE `rooms` (
 
 INSERT INTO `rooms` (`id`, `name`, `price`, `descriptions`, `img`, `adminId`, `categoryId`, `status`, `createAt`) VALUES
 (1, 'K5-102', 300, 'Pool view, WiFi, HDTV, media panel, laptop safe, minibar  Admire views of the pool from this stylish guest room with one king bed. Unwind and watch the HDTV and stay connected with the media panel allowing you to connect your', '16540294611.png', 0, 2, 'active', '2022-05-31 20:37:41'),
-(2, 'F-60', 500, '144 sq. m., two minibars, two bathrooms, two TVs, air conditioning, mini bar, tea & coffee facilities. This 144 sq. m. Queen Family Room features two bathrooms and walk in showers both fully stocked with luxurious amenities. ', '16540355964.png', 2, 3, 'active', '2022-06-01 18:22:28'),
+(2, 'F-60', 500, '144 sq. m., two minibars, two bathrooms, two TVs, air conditioning, mini bar, tea & coffee facilities. This 144 sq. m. Queen Family Room features two bathrooms and walk in showers both fully stocked with luxurious amenities. ', '16540355964.png', 2, 3, 'booked', '2022-06-03 02:53:15'),
 (3, 'D1-106', 500, 'Pool view, terrace, WiFi, HDTV, media panel, laptop safe, minibar  Located on the ground floor opposite the pool, enjoy the sunshine from the private terrace of this stylish cabana room with one king bed.  Unwind and watch th', '1654099973TWIN GUEST ROOM.jpg', 2, 1, 'active', '2022-06-01 16:12:53'),
 (4, 'S-201', 200, 'Elegant dÃ©cor, air conditioning, tea & coffee facilities, 37-inch TV, mini bar. Stay in this contemporary guest room featuring a queen-sized bed. This room comfortably sleeps two adults and two children. Unwind in front of t', '16541078191.jpg', 2, 5, 'active', '2022-06-01 18:23:39'),
 (5, 'T-302', 500, 'Pool view, terrace, WiFi, HDTV, media panel, laptop safe, minibar  Located on the ground floor opposite the pool, enjoy the sunshine from the private terrace of this stylish cabana room with one king bed.  Unwind and watch th', '16541078641.jpg', 2, 6, 'active', '2022-06-01 18:24:24'),
-(6, 'Su-401', 700, 'Elegant dÃ©cor, air conditioning, tea & coffee facilities, 37-inch TV, mini bar. Stay in this contemporary guest room featuring a queen-sized bed. This room comfortably sleeps two adults and two children. Unwind in front of t', '16541079052.jpg', 2, 4, 'active', '2022-06-01 18:25:05');
+(6, 'Su-401', 700, 'Elegant dÃ©cor, air conditioning, tea & coffee facilities, 37-inch TV, mini bar. Stay in this contemporary guest room featuring a queen-sized bed. This room comfortably sleeps two adults and two children. Unwind in front of t', '16541079052.jpg', 2, 4, 'booked', '2022-06-03 03:26:33');
 
 -- --------------------------------------------------------
 
@@ -321,13 +250,6 @@ INSERT INTO `shift` (`id`, `name`) VALUES
 --
 
 --
--- Indexes for table `activeadmin`
---
-ALTER TABLE `activeadmin`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `adminId` (`adminId`);
-
---
 -- Indexes for table `admins`
 --
 ALTER TABLE `admins`
@@ -343,12 +265,6 @@ ALTER TABLE `category`
 -- Indexes for table `custmer`
 --
 ALTER TABLE `custmer`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `custmer_ad`
---
-ALTER TABLE `custmer_ad`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -382,19 +298,6 @@ ALTER TABLE `orders`
   ADD KEY `room_id` (`room_id`);
 
 --
--- Indexes for table `permaion`
---
-ALTER TABLE `permaion`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `adminId` (`adminId`);
-
---
 -- Indexes for table `rooms`
 --
 ALTER TABLE `rooms`
@@ -413,12 +316,6 @@ ALTER TABLE `shift`
 --
 
 --
--- AUTO_INCREMENT for table `activeadmin`
---
-ALTER TABLE `activeadmin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
@@ -435,12 +332,6 @@ ALTER TABLE `category`
 --
 ALTER TABLE `custmer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `custmer_ad`
---
-ALTER TABLE `custmer_ad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -464,19 +355,7 @@ ALTER TABLE `options`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `permaion`
---
-ALTER TABLE `permaion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `roles`
---
-ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `rooms`
@@ -493,12 +372,6 @@ ALTER TABLE `shift`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `activeadmin`
---
-ALTER TABLE `activeadmin`
-  ADD CONSTRAINT `activeadmin_ibfk_1` FOREIGN KEY (`adminId`) REFERENCES `admins` (`id`);
 
 --
 -- Constraints for table `employee`
@@ -520,12 +393,6 @@ ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`custmerId`) REFERENCES `custmer` (`id`),
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`),
   ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`);
-
---
--- Constraints for table `roles`
---
-ALTER TABLE `roles`
-  ADD CONSTRAINT `roles_ibfk_1` FOREIGN KEY (`adminId`) REFERENCES `admins` (`id`);
 
 --
 -- Constraints for table `rooms`

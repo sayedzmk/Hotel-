@@ -3,7 +3,7 @@ include '../shared/nav.php';
 include '../shared/functions/functions.php';
 $customerID = $_SESSION['CustomerID'];
 
-$select_order = "SELECT category.name as categoryName, orders.id as orderID ,orders.check_in as StartDay ,orders.check_out as EndDay,orders.price as orderPrice,rooms.name as roomName from `orders` JOIN category on orders.categoryId=category.id JOIN rooms on orders.room_id=rooms.id where  `custmerId` = $customerID ";
+$select_order = "SELECT category.name as categoryName, orders.id as orderID ,orders.check_in as StartDay ,orders.check_out as EndDay,orders.price as orderPrice,rooms.name as roomName ,  orders.status as orderStatus from `orders` JOIN category on orders.categoryId=category.id JOIN rooms on orders.room_id=rooms.id where  `custmerId` = $customerID ";
 $order_Selection = mysqli_query($conn, $select_order);
 
 
@@ -48,7 +48,10 @@ if (isset($_GET['delete'])) {
 
                             <tbody>
                                 <?php foreach ($order_Selection as $data) { ?>
-                                    <tr>
+                                    <tr class="<?php
+                                                if ($data['orderStatus'] == 'filed') {
+                                                    echo 'alert alert-danger';
+                                                } ?>">
                                         <td><?php echo $data['roomName'] ?></td>
                                         <td><?php echo $data['categoryName'] ?></td>
                                         <td><?php echo $data['StartDay'] ?></td>
@@ -56,7 +59,7 @@ if (isset($_GET['delete'])) {
                                         <td><?php echo $data['orderPrice'] ?><?php echo "$" ?></td>
 
                                         <td>
-                                            <a class="btn btn-info" href=""><i class="bi bi-pencil-square"></i></a>
+
                                             <a class="btn btn-danger" href="/hotel/userpanel/order/order.php?delete=<?php echo $data['orderID'] ?>" onclick="return confirm('Are You Sure ? ')"><i class="bi bi-trash"></i></a>
                                         </td>
                                     </tr>

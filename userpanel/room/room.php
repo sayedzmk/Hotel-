@@ -2,7 +2,7 @@
 include '../shared/nav.php';
 include '../shared/functions/functions.php';
 
-$select = "SELECT rooms.id as romid ,rooms.name as nameRoom ,rooms.descriptions as desrooms,rooms.img as imgrooms,rooms.price as priceroom ,category.name as catname from `rooms` join `category` on rooms.categoryId=category.id";
+$select = "SELECT rooms.id as romid ,rooms.name as nameRoom ,rooms.descriptions as desrooms,rooms.img as imgrooms,rooms.price as priceroom ,category.name as catname, rooms.status as statusRoom from `rooms` join `category` on rooms.categoryId=category.id where rooms.status = 'active'";
 $Room_Selection = mysqli_query($conn, $select);
 
 ?>
@@ -55,6 +55,6 @@ $Room_Selection = mysqli_query($conn, $select);
 </main><!-- End #main -->
 
 <?php
-include '../shared/footer.php'; 
-include '../shared/script.php'; 
+include '../shared/footer.php';
+include '../shared/script.php';
 ?>

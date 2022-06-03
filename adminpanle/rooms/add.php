@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '\..\init.php';
+require __DIR__ . '/../init.php';
 
 
 $select = "SELECT * FROM `category`";

@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '\..\init.php';
+require __DIR__ . '/../init.php';
 // show all type Room    s=alltype
 $select = "SELECT category.id as CatID ,category.name as catName FROM `category`";
 $s = mysqli_query($conn, $select);

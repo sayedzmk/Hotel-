@@ -1,6 +1,8 @@
 <?php include '../shared/head.php';
 include '../shared/nav.php';
 include '../shared/functions/functions.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 auth();
 ob_start();
 
@@ -24,11 +26,13 @@ function dateDiffInDays($date1, $date2)
 if (isset($_POST['btnSumbit'])) {
     $start_date = $_POST['startDay'];
     $end_date = $_POST['endDay'];
+    $roomId = $_GET['Booking'];
     $days = dateDiffInDays($start_date, $end_date);
     $totalPrice = $days * $RoomPrice;
     $customerID = $_SESSION['CustomerID'];
-    $insert = "INSERT INTO `orders` VALUES (null,$customerID,$catID,'$start_date','$end_date',$days, $totalPrice,null)";
+    $insert = "INSERT INTO `orders` VALUES (null,$customerID,$catID,$roomId,'$start_date','$end_date',$days, $totalPrice,null,'whating')";
     $i = mysqli_query($conn, $insert);
+    print_r($i);
     header("location:/hotel/userpanel/order/order.php");
     exit();
 }

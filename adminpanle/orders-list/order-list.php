@@ -1,7 +1,7 @@
 <?php
-require __DIR__ . '\..\init.php';
+require __DIR__ . '/../init.php';
 
-$select_order = "SELECT category.name as categoryName, orders.id as orderID ,orders.check_in as StartDay ,orders.check_out as EndDay,orders.price as orderPrice ,rooms.name as roomName from `orders` JOIN category on orders.categoryId=category.id  JOIN `rooms` on orders.room_id=rooms.id";
+$select_order = "SELECT category.name as categoryName, orders.id as orderID ,orders.check_in as StartDay ,orders.check_out as EndDay,orders.price as orderPrice ,rooms.name as roomName, orders.status as orderStatus  from `orders` JOIN category on orders.categoryId=category.id  JOIN `rooms` on orders.room_id=rooms.id";
 $order_Selection = mysqli_query($conn, $select_order);
 
 //delete
@@ -11,6 +11,30 @@ if (isset($_GET['delete'])) {
     $delete_orders = mysqli_query($conn, $delete);
     header("location: /hotel/adminpanle/orders-list/order-list.php");
     exit();
+}
+
+if (isset($_GET['boking']) && isset($_GET['id'])) {
+    $orderId = $_GET['id'];
+    $booking = $_GET['boking'];
+    if ($booking == 'aprove') {
+        $select = "SELECT orders.id as orderID, rooms.id as roomId   from `orders`  join `rooms` on orders.room_id=rooms.id where orders.id = $orderId";
+        $se = mysqli_query($conn, $select);
+        $row = mysqli_fetch_assoc($se);
+        $roomId = $row['roomId'];
+
+        $updateOrder = "UPDATE `orders` SET `status` = 'aprove'  where `id` = $orderId";
+        mysqli_query($conn, $updateOrder);
+
+        $update = "UPDATE `rooms` SET `status` = 'booked'  where `id` = $roomId";
+        $u = mysqli_query($conn, $update);
+        header("location: /hotel/adminpanle/orders-list/order-list.php");
+        exit();
+    } elseif ($booking == 'filed') {
+        $update = "UPDATE `orders` SET `status` = 'filed'  where `id` = $orderId";
+        $u = mysqli_query($conn, $update);
+        header("location: /hotel/adminpanle/orders-list/order-list.php");
+        exit();
+    }
 }
 ?>
 
@@ -54,8 +78,18 @@ if (isset($_GET['delete'])) {
                                         <td><?php echo $data['orderPrice'] ?><?php echo "$" ?></td>
 
                                         <td>
-                                            <a class="btn btn-info" href=""><i class="bi bi-pencil-square"></i></a>
                                             <a class="btn btn-danger" href="/hotel/adminpanle/orders-list/order-list.php?delete=<?php echo $data['orderID'] ?>" onclick="return confirm('Are You Sure ? ')"><i class="bi bi-trash"></i></a>
+                                            <?php
+                                            if ($_SESSION['group'] == 'admin') {
+                                                if ($data['orderStatus'] == 'whating') {
+                                            ?>
+                                                    <a class="btn btn-succes" href="/hotel/adminpanle/orders-list/order-list.php?boking=aprove&id=<?php echo $data['orderID'] ?>"><i class="bi bi-check-circle"></i></a>
+
+                                                    <a class="btn btn-info" href="/hotel/adminpanle/orders-list/order-list.php?boking=filed&id=<?php echo $data['orderID'] ?>"><i class="bi bi-clipboard-x"></i></a>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
                                         </td>
                                     </tr>
                                 <?php } ?>
