@@ -10,6 +10,14 @@ $order_Selection = mysqli_query($conn, $select_order);
 //delete
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
+    $select = "SELECT orders.id as orderID, rooms.id as roomId   from `orders`  join `rooms` on orders.room_id=rooms.id where orders.id = $id";
+    $se = mysqli_query($conn, $select);
+    $row = mysqli_fetch_assoc($se);
+    $roomId = $row['roomId'];
+
+    $update = "UPDATE `rooms` SET `status` = 'active'  where `id` = $roomId";
+    $u = mysqli_query($conn, $update);
+
     $delete = "DELETE from `orders` where orders.id = $id";
     $delete_orders = mysqli_query($conn, $delete);
     header("location: /hotel/userpanel/order/order.php");
