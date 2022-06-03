@@ -13,8 +13,8 @@ if (isset($_POST['add'])) {
     header("location: /hotel/adminpanle/employee/list.php ");
 }
 
-$s  = seletQuery('department');
-$sh = seletQuery('shift');
+$selectdep=SeleetQuery('department');
+$selectshift=SeleetQuery('shift');
 
 $fname = "";
 $lname = "";
@@ -74,7 +74,7 @@ if (isset($_GET['edit'])) {
                                 <div class="col-md-6">
                                     <select id="inputState" name="dep" class="form-select">
                                         <option selected>Department</option>
-                                        <?php foreach ($s as $row) { ?>
+                                        <?php foreach ($selectdep as $row) { ?>
                                             <option value="<?php echo $row[0]; ?>"><?php echo $row[1] ?>
                                             </option>
                                         <?php }; ?>
@@ -83,7 +83,7 @@ if (isset($_GET['edit'])) {
                                 </div>
                                 <select id="inputState" name="shift" class="form-select">
                                     <option selected>Shift</option>
-                                    <?php foreach ($sh as $row2) {
+                                    <?php foreach ($selectshift as $row2) {
                                         echo $row2 ?>
                                         <option value="<?php echo $row2[0]; ?>"><?php echo $row2[1] ?>
                                         </option>
