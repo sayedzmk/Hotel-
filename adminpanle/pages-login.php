@@ -1,9 +1,9 @@
 <?php
-ob_start();
-session_start();
+    ob_start();
+    session_start();
 include './includes/head.php';
 include './env.php';
-
+    
 if (isset($_SESSION['id'])) {
     header("location: /hotel/adminpanle/");
     exit();

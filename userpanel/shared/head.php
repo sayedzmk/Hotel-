@@ -28,7 +28,7 @@ $conn = mysqli_connect($host_db, $user_db, $password_db, $name_db);
   <link href="/hotel/userpanel/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="/hotel/userpanel/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="/hotel/userpanel/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+ 
   <!-- Template Main CSS File -->
   <link href="/hotel/userpanel/assets/css/style.css" rel="stylesheet">
 

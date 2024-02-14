@@ -44,7 +44,7 @@ $row = mysqli_fetch_assoc($admin);
                     </li>
                     <li>
                         <hr class="dropdown-divider">
-                    </li>
+                   </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

@@ -1,4 +1,5 @@
-<?php include '../shared/head.php';
+<?php 
+include '../shared/head.php';
 include '../shared/env.php';
 include '../shared/functions/functions.php';
 

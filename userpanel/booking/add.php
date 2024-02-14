@@ -1,4 +1,5 @@
-<?php include '../shared/head.php';
+<?php 
+include '../shared/head.php';
 include '../shared/nav.php';
 include '../shared/functions/functions.php';
 error_reporting(E_ALL);
